@@ -1,0 +1,21 @@
+#footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #bfbfbf;
+  font-size: 10px;
+  text-shadow: 0 1px 0 #bfbfbf;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-image: url(bg-aaa.jpg);
+  background-position: center;
+  background-size: cover;
+  font-size: 14px;
+  font-weight: 400;
+}
