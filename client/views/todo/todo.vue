@@ -4,7 +4,7 @@
       type="text"
       class="add-input"
       autofocus
-      placeholder="接下去要做啥子"
+      placeholder="接下去要做啥子" 
       @keyup.enter="addTodo"
     />
 
@@ -30,16 +30,16 @@ let id = 0
 export default {
   components: {
     Item,
-    Tabs,
+    Tabs
   },
-  data() {
+  data () {
     return {
       todos: [],
-      filter: 'all',
+      filter: 'all'
     }
   },
   computed: {
-    filteredTodos() {
+    filteredTodos () {
       if (this.filter === 'all') {
         return this.todos
       }
@@ -48,7 +48,7 @@ export default {
     }
   },
   methods: {
-    addTodo(e) {
+    addTodo (e) {
       this.todos.unshift({
         id: id++,
         content: e.target.value.trim(),
@@ -56,13 +56,13 @@ export default {
       })
       e.target.value = ''
     },
-    deleteTodo(id) {
+    deleteTodo (id) {
       this.todos.splice(this.todos.findIndex(item => item.id === id), 1)
     },
-    toggleFilter(state) {
+    toggleFilter (state) {
       this.filter = state
     },
-    clearAllCompletedTodo() {
+    clearAllCompletedTodo () {
       this.todos = this.todos.filter(todo => !todo.completed)
     }
   }

@@ -20,28 +20,28 @@ export default {
   props: {
     filter: {
       type: String,
-      required: true,
+      required: true
     },
     todos: {
       type: Array,
       required: true
     }
   },
-  data() {
+  data () {
     return {
       states: ['all', 'active', 'completed']
     }
   },
   computed: {
-    unCompletedTodoLength() {
+    unCompletedTodoLength () {
       return this.todos.filter(todo => !todo.completed).length
     }
   },
   methods: {
-    toggleFilter(state) {
+    toggleFilter (state) {
       this.$emit('toggleFilter', state)
     },
-    clearAllCompleted() {
+    clearAllCompleted () {
       this.$emit('clearAll')
     }
   }

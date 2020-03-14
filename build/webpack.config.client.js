@@ -33,7 +33,13 @@ if (isDev) {
           test: /\.styl$/,
           use: [
             'style-loader',
-            'css-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                module: true,
+                localIdentName: isDev ? '[path]-[name]-[hash:base64:6]' : '[hash:base64:6]'
+              }
+            },
             {
               loader: 'postcss-loader',
               options: {
@@ -65,7 +71,7 @@ if (isDev) {
         {
           test: /\.styl$/,
           use: ExtractWebpackPlugin.extract({
-            fallback: "style-loader",
+            fallback: "vue-style-loader",
             use: [
               "css-loader",
               {
