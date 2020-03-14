@@ -29,7 +29,7 @@ const config = {
             loader: 'url-loader',
             options: {
               limit: 1024,
-              name: '[name]-aaa.[ext]'
+              name: 'resources/[path][name].[hash:8].[ext]'
             }
           }
         ]
