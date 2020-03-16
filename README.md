@@ -54,3 +54,32 @@ export default {
   }
 }
 ```
+### vue练习
+1. webpack.config.practice.js 配置
+```
+新增
+resolve: {
+  alias: {
+    'vue': path.join(__dirname, '../node_modules/vue/dist/vue.esm.js')
+  }
+},
+使用 vue.esm.js 为了能够编译 template
+new Vue({
+  el: div,
+  template: '<div>this is a practice</div>'
+})
+
+```
+2. vue挂载
+```
+new Vue({
+  // el: '#app',
+  template: '<div>this is a practice</div>'
+})
+
+const app = new Vue({
+  template: '<div>this is a practice</div>'
+})
+
+app.$mount('#app')
+```
