@@ -19,9 +19,9 @@ const devServer = {
   port: 8000,
   hot: true,
   overlay: {
-    errors: true,
+    errors: true
   },
-  open: true,
+  open: true
 }
 
 if (isDev) {
@@ -49,12 +49,12 @@ if (isDev) {
             'stylus-loader'
           ]
         }
-      ],
+      ]
     },
     devServer,
     plugins: defaultPlugins.concat([
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.HotModuleReplacementPlugin()
+      // new webpack.NoEmitOnErrorsPlugin() // webpack4 取消了
     ])
   })
 } else {
@@ -64,36 +64,43 @@ if (isDev) {
       vendor: ['vue']
     },
     output: {
-      filename: '[name]:[chunkHash:8].js',
+      filename: '[name]:[chunkHash:8].js'
     },
     module: {
       rules: [
         {
           test: /\.styl$/,
           use: ExtractWebpackPlugin.extract({
-            fallback: "vue-style-loader",
+            fallback: 'vue-style-loader',
             use: [
-              "css-loader",
+              'css-loader',
               {
-                loader: "postcss-loader",
+                loader: 'postcss-loader',
                 options: {
                   sourceMap: true
                 }
               },
-              "stylus-loader"
+              'stylus-loader'
             ]
           })
         }
       ]
     },
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      },
+      runtimeChunk: true,
+      noEmitOnErrors: true
+    },
     plugins: defaultPlugins.concat([
-      new ExtractWebpackPlugin('styles.[contentHash:8].css'),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor'
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'runtime'
-      })
+      new ExtractWebpackPlugin('styles.[hash:8].css')
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'vendor'
+      // }),
+      // new webpack.optimize.CommonsChunkPlugin({
+      //   name: 'runtime'
+      // })
     ])
   })
 }
