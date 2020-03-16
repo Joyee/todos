@@ -10,7 +10,9 @@ const defaultPlugins = [
   new webpack.DefinePlugin({
     'proccess.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
   }),
-  new HtmlWebpackPlugin()
+  new HtmlWebpackPlugin({
+    template: path.join(__dirname, 'template.html')
+  })
 ]
 let config
 
@@ -19,9 +21,12 @@ const devServer = {
   port: 8000,
   hot: true,
   overlay: {
-    errors: true,
+    errors: true
   },
   open: true,
+  historyApiFallback: {
+    index: '/public/index.html'
+  }
 }
 
 if (isDev) {
