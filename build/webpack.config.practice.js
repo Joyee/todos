@@ -22,6 +22,9 @@ const devServer = {
     errors: true,
   },
   open: true,
+  historyApiFallback: {
+    index: '/public/index.html'
+  }
 }
 
 config = merge(baseConfig, {

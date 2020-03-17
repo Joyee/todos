@@ -8,7 +8,7 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const defaultPlugins = [
   new webpack.DefinePlugin({
-    'proccess.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
   }),
   new HtmlWebpackPlugin({
     template: path.join(__dirname, 'template.html')
