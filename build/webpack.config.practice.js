@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const baseConfig = require('./webpack.config.base.js')
+const baseConfig = require('./webpack.config.base')
 
 const defaultPlugins = [
   new webpack.DefinePlugin({

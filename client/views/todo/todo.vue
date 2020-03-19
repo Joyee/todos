@@ -28,8 +28,11 @@ import Item from './item.vue'
 import Tabs from './tabs.vue'
 let id = 0
 export default {
+  metaInfo: {
+    title: 'The Todo App'
+  },
   beforeRouteEnter (to, from, next) {
-    console.log('todo route enter', this) // 钩子函数获取不到this
+    console.log('todo route enter') // 钩子函数获取不到this
     next()
   },
   beforeRouteUpdate (to, from, next) {

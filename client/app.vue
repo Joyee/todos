@@ -1,13 +1,13 @@
 <template>
-  <div id="app">
-    <div id="cover"></div>
+  <div id="app" class="app">
+    <div id="cover" class="cover"></div>
     <Header></Header>
     <p>{{counter}}</p>
     <p>{{fullName}}</p>
     <p>{{textPlus}}</p>
     <p>{{textA}}</p>
     <p>{{textB}}</p>
-    <p>{{textC}}</p>
+    <!-- <p>{{textC}}</p> -->
     <!-- <Todo></Todo> -->
     <!-- <router-link to="/login">login</router-link> -->
     <router-link :to="{ name: 'login' }">login</router-link>
@@ -33,6 +33,9 @@ import {
 } from 'vuex'
 
 export default {
+  metaInfo: {
+    title: 'Joyee \'s Todo App'
+  },
   components: {
     Header,
     Footer
@@ -90,8 +93,8 @@ export default {
     ...mapState({
       counter: (state) => state.count, // 可以用于计算
       textA: (state) => state.a.text,
-      textB: (state) => state.b.text,
-      textC: (state) => state.c.text
+      textB: (state) => state.b.text
+      // textC: (state) => state.c.text
     }),
     // fullName () {
     //   return this.$store.getters.fullName
@@ -109,8 +112,8 @@ export default {
 }
 </script>
 
-<style lang='stylus' scoped>
-#app {
+<style lang="stylus" scoped>
+.app {
   position absolute
   left 0
   right 0
@@ -118,7 +121,7 @@ export default {
   bottom 0
 }
 
-#cover {
+.cover {
   position absolute
   left 0
   right 0

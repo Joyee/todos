@@ -18,6 +18,7 @@ import './assets/css/global.styl'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
+
 const router = createRouter()
 const store = createStore()
 
@@ -46,4 +47,4 @@ new Vue({
   router,
   store,
   render: (h) => h(App)
-}).$mount('#app')
+}).$mount('#root')

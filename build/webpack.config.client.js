@@ -3,7 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const ExtractWebpackPlugin = require('extract-text-webpack-plugin')
-const baseConfig = require('./webpack.config.base.js')
+const baseConfig = require('./webpack.config.base')
+const VueClientPlugin = require('vue-server-renderer/client-plugin')
+
 const isDev = process.env.NODE_ENV === 'development'
 
 const defaultPlugins = [
@@ -12,7 +14,8 @@ const defaultPlugins = [
   }),
   new HtmlWebpackPlugin({
     template: path.join(__dirname, 'template.html')
-  })
+  }),
+  new VueClientPlugin()
 ]
 let config
 
@@ -65,27 +68,29 @@ if (isDev) {
 } else {
   config = merge(baseConfig, {
     entry: {
-      app: path.join(__dirname, '../client/index.js'),
+      // app: path.join(__dirname, '../client/index.js'),
+      app: path.join(__dirname, '../client/client-entry.js'),
       vendor: ['vue']
     },
     output: {
       filename: '[name]:[chunkHash:8].js',
+      publicPath: '/public/'
     },
     module: {
       rules: [
         {
           test: /\.styl$/,
           use: ExtractWebpackPlugin.extract({
-            fallback: "vue-style-loader",
+            fallback: 'vue-style-loader',
             use: [
-              "css-loader",
+              'css-loader',
               {
-                loader: "postcss-loader",
+                loader: 'postcss-loader',
                 options: {
                   sourceMap: true
                 }
               },
-              "stylus-loader"
+              'stylus-loader'
             ]
           })
         }
