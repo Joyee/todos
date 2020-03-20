@@ -2,10 +2,10 @@ import Vue from 'vue'
 import App from './app.vue'
 import router from './config/router'
 
-import './assets/css/global.styl'
+import './assets/styles/global.styl'
 // ==== test start
-// import './assets/css/style.css'
-// import './assets/css/style.styl'
+// import './assets/styles/style.css'
+// import './assets/styles/style.styl'
 // import './assets/images/avatar.jpeg'
 // test end ====
 

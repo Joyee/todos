@@ -3,6 +3,7 @@
     <div id="cover"></div>
     <Header></Header>
     <Todo></Todo>
+    <notification content="hello"/>
     <Footer></Footer>
   </div>
 </template>

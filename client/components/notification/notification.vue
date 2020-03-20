@@ -21,9 +21,9 @@ export default {
     }
   },
   methods: {
-    handleClose() {}
+    handleClose () {}
   }
-};
+}
 </script>
 
 <style>

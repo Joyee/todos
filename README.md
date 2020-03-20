@@ -35,8 +35,8 @@ module: {
 
 client/layout/footer.jsx
 
-// import '../assets/css/footer.styl'
-import className from '../assets/css/footer.styl'
+// import '../assets/styles/footer.styl'
+import className from '../assets/styles/footer.styl'
 
 export default {
   data() {
