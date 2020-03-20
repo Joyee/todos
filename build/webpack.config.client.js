@@ -4,13 +4,15 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const ExtractWebpackPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.config.base.js')
+const VueClientPlugin = require('vue-server-renderer/client-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 
 const defaultPlugins = [
   new webpack.DefinePlugin({
     'proccess.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
   }),
-  new HtmlWebpackPlugin()
+  new HtmlWebpackPlugin(),
+  new VueClientPlugin()
 ]
 let config
 
