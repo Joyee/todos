@@ -28,6 +28,25 @@ import Item from './item.vue'
 import Tabs from './tabs.vue'
 let id = 0
 export default {
+  metaInfo: {
+    title: 'The Todo App'
+  },
+  beforeRouteEnter (to, from, next) {
+    console.log('todo route enter') // 钩子函数获取不到this
+    next()
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log('todo route update')
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log('todo route leave')
+    // if (global.confirm('are u sure leave?')) {
+    //   next()
+    // }
+    next()
+  },
+  props: ['id'],
   components: {
     Item,
     Tabs
@@ -46,6 +65,9 @@ export default {
       const completed = this.filter === 'completed'
       return this.todos.filter(todo => todo.completed === completed)
     }
+  },
+  mounted () {
+    // console.log(this.id)
   },
   methods: {
     addTodo (e) {

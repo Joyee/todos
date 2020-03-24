@@ -1,30 +1,37 @@
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HTMLPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const ExtractWebpackPlugin = require('extract-text-webpack-plugin')
-const baseConfig = require('./webpack.config.base.js')
+const ExtractPlugin = require('extract-text-webpack-plugin')
+const baseConfig = require('./webpack.config.base')
 const VueClientPlugin = require('vue-server-renderer/client-plugin')
+
 const isDev = process.env.NODE_ENV === 'development'
 
-const defaultPlugins = [
+const defaultPlugin = [
   new webpack.DefinePlugin({
-    'proccess.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    'process.env': {
+      NODE_ENV: isDev ? '"development"' : '"production"'
+    }
   }),
-  new HtmlWebpackPlugin(),
+  new HTMLPlugin({
+    template: path.join(__dirname, 'template.html')
+  }),
   new VueClientPlugin()
 ]
-let config
 
 const devServer = {
-  host: '0.0.0.0',
   port: 8000,
-  hot: true,
+  host: '0.0.0.0',
   overlay: {
-    errors: true,
+    errors: true
   },
-  open: true,
+  historyApiFallback: {
+    index: '/public/index.html'
+  }
 }
+
+let config
 
 if (isDev) {
   config = merge(baseConfig, {
@@ -32,16 +39,10 @@ if (isDev) {
     module: {
       rules: [
         {
-          test: /\.styl$/,
+          test: /\.styl/,
           use: [
-            'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                module: true,
-                localIdentName: isDev ? '[path]-[name]-[hash:base64:6]' : '[hash:base64:6]'
-              }
-            },
+            'vue-style-loader',
+            'css-loader',
             {
               loader: 'postcss-loader',
               options: {
@@ -51,45 +52,46 @@ if (isDev) {
             'stylus-loader'
           ]
         }
-      ],
+      ]
     },
     devServer,
-    plugins: defaultPlugins.concat([
+    plugins: defaultPlugin.concat([
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.NoEmitOnErrorsPlugin()
     ])
   })
 } else {
   config = merge(baseConfig, {
     entry: {
-      app: path.join(__dirname, '../client/index.js'),
+      app: path.join(__dirname, '../client/client-entry.js'),
       vendor: ['vue']
     },
     output: {
-      filename: '[name]:[chunkHash:8].js',
+      filename: '[name].[chunkhash:8].js',
+      publicPath: '/public/'
     },
     module: {
       rules: [
         {
-          test: /\.styl$/,
-          use: ExtractWebpackPlugin.extract({
-            fallback: "vue-style-loader",
+          test: /\.styl/,
+          use: ExtractPlugin.extract({
+            fallback: 'vue-style-loader',
             use: [
-              "css-loader",
+              'css-loader',
               {
-                loader: "postcss-loader",
+                loader: 'postcss-loader',
                 options: {
                   sourceMap: true
                 }
               },
-              "stylus-loader"
+              'stylus-loader'
             ]
           })
         }
       ]
     },
-    plugins: defaultPlugins.concat([
-      new ExtractWebpackPlugin('styles.[contentHash:8].css'),
+    plugins: defaultPlugin.concat([
+      new ExtractPlugin('styles.[contentHash:8].css'),
       new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor'
       }),

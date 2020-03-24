@@ -5,12 +5,20 @@ const ExtractWebpackPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.config.base.js')
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
 
-const defaultPlugins = [
+const isDev = process.env.NODE_ENV === 'development'
+
+const plugins = [
+  new ExtractWebpackPlugin('styles.[contentHash:8].css'),
   new webpack.DefinePlugin({
-    'proccess.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+    'process.env.VUE_ENV': '"server"'
   })
 ]
 let config
+
+if (isDev) {
+  plugins.push(new VueSSRServerPlugin())
+}
 
 config = merge(baseConfig, {
   target: 'node',
@@ -42,14 +50,7 @@ config = merge(baseConfig, {
       }
     ]
   },
-  plugins: defaultPlugins.concat([
-    new ExtractWebpackPlugin('styles.[contentHash:8].css'),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-      'process.env.VUE_ENV': '"server"'
-    }),
-    new VueSSRServerPlugin()
-  ])
+  plugins
 })
 
 module.exports = config

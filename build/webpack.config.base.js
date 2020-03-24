@@ -1,5 +1,6 @@
 const path = require('path')
 const createVueLoaderOptions = require('./vue-loader.config')
+
 const isDev = process.env.NODE_ENV === 'development'
 
 const config = {
@@ -42,13 +43,6 @@ const config = {
               name: 'resources/[path][name].[hash:8].[ext]'
             }
           }
-        ]
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
         ]
       }
     ]
