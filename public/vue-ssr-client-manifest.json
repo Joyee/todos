@@ -4,16 +4,16 @@
     "resources/client/assets/images/bg.55db3d93.jpeg",
     "0.7eb3d808.js",
     "1.58330734.js",
-    "app.fd53756c.js",
+    "app.4cb662c3.js",
     "vendor.c4c505d7.js",
-    "runtime.652d4e0e.js",
-    "styles.09d67e74.css",
+    "runtime.f769488d.js",
+    "styles.a61b1316.css",
     "index.html"
   ],
   "initial": [
-    "runtime.652d4e0e.js",
+    "runtime.f769488d.js",
     "vendor.c4c505d7.js",
-    "app.fd53756c.js"
+    "app.4cb662c3.js"
   ],
   "async": [
     "0.7eb3d808.js",
@@ -79,7 +79,7 @@
       3,
       6
     ],
-    "5ecb0e4c": [
+    "766cb15e": [
       3,
       6
     ],
@@ -107,7 +107,7 @@
       3,
       6
     ],
-    "2d8f60d0": [
+    "1744a973": [
       3,
       6
     ],

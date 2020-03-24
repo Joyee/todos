@@ -7,14 +7,6 @@ import createRouter from './config/router'
 import createStore from './store/store'
 
 import './assets/styles/global.styl'
-// ==== test start
-// import './assets/styles/style.css'
-// import './assets/styles/style.styl'
-// import './assets/images/avatar.jpeg'
-// test end ====
-
-// const root = document.createElement('div')
-// document.body.appendChild(root)
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -47,4 +39,4 @@ new Vue({
   router,
   store,
   render: (h) => h(App)
-}).$mount('#app')
+}).$mount('#root')

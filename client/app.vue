@@ -6,7 +6,7 @@
     <!-- <p>{{textC}} {{textPlus}}</p> -->
     <router-link :to="{ name: 'login' }">login</router-link>
     <router-link to="/app">app</router-link>
-    
+    <button @click="notify">点击</button>
     <transition name="fade">
       <router-view></router-view>
     </transition>
@@ -54,6 +54,12 @@ export default {
   methods: {
     // ...mapActions(['updateCountAsync']),
     // ...mapMutations(['updateCount']),
+    notify () {
+      this.$notify({
+        content: 'test notify',
+        btn: 'close'
+      })
+    }
   },
   computed: {
     // ...mapState({

@@ -1,6 +1,12 @@
 <template>
-  <transition name="fade">
-    <div class="notification">
+  <transition name="fade" @after-leave="afterLeave" @after-enter="afterEnter">
+    <div 
+      class="notification"
+      :style="styles"
+      v-show="visible"
+      @mouseenter="clearTimer"
+      @mouseleave="createTimer"
+    >
       <span class="content">{{content}}</span>
       <a class="btn" @click="handleClose">{{btn}}</a>
     </div>
@@ -20,8 +26,27 @@ export default {
       default: '关闭'
     }
   },
+  data () {
+    return {
+      visible: true
+    }
+  },
+  computed: {
+    styles () {
+      return {}
+    }
+  },
   methods: {
-    handleClose () {}
+    handleClose (e) {
+      e.preventDefault()
+      this.$emit('close')
+    },
+    afterLeave () {
+      this.$emit('closed')
+    },
+    afterEnter () {},
+    clearTimer () {},
+    createTimer () {}
   }
 }
 </script>
@@ -54,10 +79,10 @@ export default {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition opacity .5s
+  transition: opacity 0.5s;
 }
 
 .fade-enter, .fade-leave-to {
-  opacity 0
+  opacity: 0;
 }
 </style>
