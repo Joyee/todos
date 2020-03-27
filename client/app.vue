@@ -7,6 +7,7 @@
     <router-link :to="{ name: 'login' }">login</router-link>
     <router-link to="/app">app</router-link>
     <button @click="notify">点击</button>
+
     <transition name="fade">
       <router-view></router-view>
     </transition>
